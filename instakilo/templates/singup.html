@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Singup</title>
+    <style> 
+
+        @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+        .btn {
+  background: #8a3ab9;
+  background-image: -webkit-linear-gradient(top, #8a3ab9, #bc2a8d);
+  background-image: -moz-linear-gradient(top, #8a3ab9, #bc2a8d);
+  background-image: -ms-linear-gradient(top, #8a3ab9, #bc2a8d);
+  background-image: -o-linear-gradient(top, #8a3ab9, #bc2a8d);
+  background-image: linear-gradient(to bottom, #8a3ab9, #bc2a8d);
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  text-shadow: 3px 4px 3px #080808;
+  -webkit-box-shadow: 7px 8px 10px #7a7a7a;
+  -moz-box-shadow: 7px 8px 10px #7a7a7a;
+  box-shadow: 7px 8px 10px #7a7a7a;
+font-family: 'Architects Daughter', cursive;
+  color: #ffffff;
+  font-size: 30px;
+  padding: 2px 40px 6px 40px;
+  border: solid #f2f2f2 1px;
+  text-decoration: none;
+  margin-top: 30px;
+padding-left: 77px;
+padding-right: 82px;
+margin-left: 10px;
+
+}
+
+.btn:hover {
+  background: #bc2a8d;
+  background-image: -webkit-linear-gradient(top, #bc2a8d, #8a3ab9);
+  background-image: -moz-linear-gradient(top, #bc2a8d, #8a3ab9);
+  background-image: -ms-linear-gradient(top, #bc2a8d, #8a3ab9);
+  background-image: -o-linear-gradient(top, #bc2a8d, #8a3ab9);
+  background-image: linear-gradient(to bottom, #bc2a8d, #8a3ab9);
+  text-decoration: none;
+}
+.container{
+   display: flex;
+}
+.images{
+
+    margin-left: 335px;
+margin-top: 158px;
+}
+.forms{
+  margin-left: 260px;
+margin-top: 323px;
+}
+::placeholder{
+   color: #808080;
+font-size: 19px;
+font-family: 'Architects Daughter', cursive;
+font-weight: unset;
+
+}
+.username,.usereamil,.userpass1,.userpass1{
+    width: 250px;
+height: 27px;
+margin: 5px;
+}
+.errors{
+
+    color: red;
+list-style-type: none;
+font-family: 'Architects Daughter', cursive;
+}
+
+ </style>
+</head>
+<body>
+  <main >
+      <div class="container">
+
+        <div class="images">  
+               <img src="{% static 'css/backlogin.png' %}">
+         </div>
+        
+        <div class="forms">
+        <p class="errors">{{forms.username.errors|striptags}}</p>   
+        <p class="errors">{{forms.email.errors|striptags}}</p>  
+        <p class="errors">{{forms.password2.errors|striptags}}</p>    
+
+            <form method="POST" action="/singup" >
+               {% csrf_token %}
+                <div>
+                    {{forms.username}}
+                    
+                </div>
+                 <div>
+               {{forms.email}}
+                </div>
+                 <div>
+                   {{forms.password1}}
+                </div>
+                 <div>
+                   {{forms.password2}}
+                </div>
+                 <div>
+                  <input type="submit" class="btn" value="Singup">
+                </div>
+                <div style="margin-top: 41px;">
+                    <hr style="color:black;">
+                </div>
+            </form>
+            <p style="margin-left: 40px;">I already have account <a  style="text-decoration: none;" href="/ "><b>Login</b></a></p>
+
+        </div>
+
+      </div>
+
+
+  </main>
+</body>
+</html>

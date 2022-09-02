@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>{{pro.user}}</title>
+  <style>
+    .btn {
+      background: #ffffff;
+      background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+      background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+      background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+      background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+      background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0px;
+      font-family: 'Architects Daughter', cursive;
+      color: #000000;
+      font-size: 14px;
+      padding: 10px 400PX 10px 400px;
+      border: solid #000000 1px;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #fccc63;
+      background-image: -webkit-linear-gradient(top, #fccc63, #ffffff);
+      background-image: -moz-linear-gradient(top, #fccc63, #ffffff);
+      background-image: -ms-linear-gradient(top, #fccc63, #ffffff);
+      background-image: -o-linear-gradient(top, #fccc63, #ffffff);
+      background-image: linear-gradient(to bottom, #fccc63, #ffffff);
+      text-decoration: none;
+    }
+
+
+    .logo {
+      width: 30px;
+      height: 30px;
+    }
+
+    nav {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      display: flex;
+      background-color: #0000003b;
+      align-items: center;
+      height: 59px;
+      justify-content: space-around;
+
+    }
+
+    .logo,
+    .home,
+    .inbox,
+    .Myprofile,
+    .login,
+    .singup {
+
+      text-decoration: none;
+      color: black;
+      font-size: 19px;
+    }
+
+
+
+    .userimage {
+      width: 200px;
+      height: 200px;
+      border-left-style: solid;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-width: 4px;
+      border-bottom-style: solid;
+      border-right-width: 4px;
+      border-top-width: 4px;
+      border-left-width: 4px;
+      border-color: #e1605c;
+      border-bottom-color: #ed5e46;
+      border-left-color: #d64a6a;
+      border-top-color: #6553c9;
+      border-right-color: #cb2a8a;
+      border-radius: 50%;
+
+    }
+
+    .container {
+
+      display: flex;
+      justify-content: center;
+      margin-top: 98px;
+    }
+
+    .postnumber,
+    .followernumber,
+    .followingnumber {
+      color: black;
+      margin-left: 50px;
+      color: black;
+
+      justify-content: center;
+      font-size: 25px;
+      margin-top: 74px;
+
+    }
+
+    .num {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      margin-left: 28px;
+    }
+
+    .num1 {
+      margin-left: 12px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+
+    .edit {}
+
+    .boxs {}
+
+    .boxforpost {
+      display: flex;
+
+    }
+
+    .postss {
+      width: 300px;
+      border: solid;
+      border-radius: 1%;
+      height: 300px;
+    }
+
+    .boxpost {
+      margin: 5px;
+      display: flex;
+      width: 470px;
+      height: 470px;
+      justify-content: center;
+      align-items: center;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 1%;
+      position: relative;
+
+    }
+
+    .over {
+
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: .5s ease;
+      background-color: #0000006B;
+    }
+
+    .boxpost:hover .over {
+      opacity: 1;
+    }
+
+    .text {
+      color: white;
+      font-size: 29px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .followbtnmsg {
+
+      background: #ffffff;
+      background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+      background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+      background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+      background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+      background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+      -webkit-border-radius: 0;
+      margin-left: 5px;
+      -moz-border-radius: 0;
+      border-radius: 0px;
+      font-family: 'Architects Daughter', cursive;
+      color: #000000;
+      font-size: 14px;
+      border: solid #000000 1px;
+      text-decoration: none;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 200px;
+      padding-right: 200px;
+
+
+    }
+
+    .followbtnmsg:hover {
+      background: #fccc63;
+      background-image: -webkit-linear-gradient(top, #fccc63, #ffffff);
+      background-image: -moz-linear-gradient(top, #fccc63, #ffffff);
+      background-image: -ms-linear-gradient(top, #fccc63, #ffffff);
+      background-image: -o-linear-gradient(top, #fccc63, #ffffff);
+      background-image: linear-gradient(to bottom, #fccc63, #ffffff);
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <nav class="navs">
+      <ul>
+        <img class="logo" src="{% static 'css/backlogin.png' %}">
+        <a class="home" href="/home"> <i class="material-icons">home</i>Home</a>
+        <a class="inbox" href="#"><i class="material-icons">markunread</i>Inbox</a>
+        <a class="inbox" href="/search"><i class="material-icons">search</i>Search</a>
+        <a class="Myprofile" href="/profile"><i class="material-icons">account_circle</i>{{request.user}}</a>
+        <a class="inbox" href="/post"><i class="material-icons">add</i>Post</a>
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="images">
+
+        {% if pro.profileimage %}
+        <img class="userimage" src="/media/{{pro.profileimage}}">
+        {% else %}
+        <img class="userimage" src="{% static 'css/default.png' %}">
+        {% endif %}
+
+
+
+      </div>
+      <div class="postnumber">
+        <p class="num1">0</p>
+        <p style="margin: 0;font-family: 'Architects Daughter', cursive;"><b>Post</b></p>
+      </div>
+
+      <div class="followernumber">
+        {% if pro.followers %}
+        <p class="num">{{ pro.followers.count }}</p>
+        {% else %}
+        <p class="num">0</p>
+        {% endif %}
+        <p style="margin: 0; font-family: 'Architects Daughter', cursive; "><b>Followers</b></p>
+      </div>
+
+      <div class="followingnumber">
+        {% if pro.following %}
+        <p class="num">{{ pro.following.count }}</p>
+        {% else %}
+        <p class="num">0</p>
+        {% endif %}
+        <p style="margin: 0; font-family: 'Architects Daughter', cursive; "><b>Following</b></p>
+      </div>
+    </div>
+    <div style=" margin: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+margin-top: auto;
+margin-bottom: auto;
+width: 50%;
+margin-top: 30px;">
+
+      <div>
+        <span>{{pro.first_name}} </span> <span> {{pro.last_name}}</span>
+      </div>
+      <div>
+        <p>{{pro.bio}} </p>
+      </div>
+
+    </div>
+
+    <div style="margin:auto;width: 50%;display: flex;">
+      {% if request.user in pro.followers.all %}
+      <a class="followbtnmsg" style="display: flex;justify-content: center;" href="/follow/{{pro.id}}">
+        <span>Following</span>
+
+      </a>
+      <button class="followbtnmsg">Message</button>
+      {% else %}
+      <a class="btn" style="display: flex;justify-content: center;" href="/follow/{{pro.id}}">
+        <span>Follow</span>
+      </a>
+   
+      {% endif %}
+
+
+
+    </div>
+
+    <div class="boxs">
+      <p style="font-family: 'Architects Daughter', cursive; margin: auto; width:70%;"><b>Posts</b></p>
+      <div style="margin:auto;" class="Post">
+        <hr style="color:black; font-weight: 10px;margin: auto; width:70%;">
+      </div>
+      {% for i in post %}
+      {% if forloop.first or forloop.counter0|divisibleby:3 %}
+      <div style="display:flex; margin: auto;width: 70%; " class="boxforpost">
+        {% endif %}
+        <span class="boxpost">
+          <img class="" src="/media/{{i.image}}">
+          <div class="over">
+            <div class="text"><span class="fa fa-heart" style="  font-size: 34px;color:white;"></span> {{i.like.count}}
+            </div>
+          </div>
+
+        </span>
+        {% if forloop.counter|divisibleby:3 %}
+
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </main>
+
+
+</body>
+
+</html>

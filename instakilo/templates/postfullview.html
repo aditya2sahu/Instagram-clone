@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        .container{
+            display: flex;
+            margin-top: 20px;
+            border-width: 1PX;
+           border-color: #bfbfbf;
+            border-style: solid;
+            border-radius: 5px;
+            border-bottom-style: none;
+            padding-top: 13px;
+padding-left: 40px;
+padding-bottom: 11px;
+padding-right: 0px;
+
+        }
+        .userimage{
+            width: 70px;
+height: 70px;
+            border-radius: 50%;
+        }
+        .posttime {
+            color: #b0b0b0;
+            font-size: 14px;
+           margin-top: 10px;
+          
+          
+        }
+        .username{
+              margin-bottom: 5px;
+  margin-top: 5px;
+}
+        .postimage{
+            display:flex;justify-content: center;align-items: center;
+            padding: 10px;
+
+        }
+        .cap{
+            padding: 30px;
+        }
+         }
+    .allusercomments{
+        position: relative;
+        height: auto;
+    }
+    .commenteduserimage{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+
+    }
+    .commenteduser{
+        display: flex;
+        height: auto;
+    }
+    .btn{
+          -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius: 3px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 19px;
+  background: #d93434;
+  padding: 10px 20px 10px 20px;
+  border: solid #ff0808 2px;
+  text-decoration: none;
+    }
+    .btn:hover {
+  background: #ffffff;
+  text-decoration: none;
+  color: red;
+}
+    </style>
+</head>
+<body>
+<main style="margin:auto;width: 50%;">
+    
+  <div class="container">
+    <div>
+{% if post.profile_for_unlike_post.profileimage  %}
+        <img  class="userimage" src="/media/{{post.profile_for_unlike_post.profileimage}}"> 
+       {% else %}
+                        <img class="userimage" src="{% static 'css/default.png' %}">
+                        {% endif %}</div>
+    <div style="margin-left: 20px;"><p class="username ">{{post.profile.username}}</p>
+        <p class="posttime"> {{post.date}}</p>
+
+    </div>
+  </div>
+  <div style="border-style: solid;border-width: 1px;  color: #b0b0b0; border-radius: 5px;" >
+    <div class="postimage" >
+      <img  src="/media/{{post.image}}">         
+    </div>
+    <div class="cap">
+        {{post.caption}}
+    </div>
+ </div>
+ <div style="border-style: solid;border-width: 1px;  color: #b0b0b0; border-radius: 5px;border-top-style: none;" >
+    <div class="postimage">
+                                    {% if i.like.count == 1 or i.like.count == 0 %}
+                                    <a style="text-decoration:none; color:red;" href="/likeview/{{post.id}}">
+                                     <p style="margin-top: 10px; font-family: 'Architects Daughter', cursive; "><b >like </b > {{post.like.count}}</p></a>
+
+                                    {% else %}
+                                    <a style="text-decoration:none; color:red;" href="/likeview/{{post.id}}">
+  <p style="margin-top: 10px; font-family: 'Architects Daughter', cursive; "><b>likes </b>{{post.like.count}}</p>
+</a>
+
+                                    {% endif %}
+
+   
+    </div>
+    
+ </div>
+ 
+
+ <div class="postimage">
+     <a href="/delete/{{post.id}}" class="btn" type="button" >Delete</a>
+ </div>
+
+
+ <div>
+   {% for i in  comments  %}
+    <div style="height: auto; margin-bottom:10px;" >
+        <div class="allusercomments">
+      <div class="commenteduser">
+        <div>
+          <a href="/searchuserprofile/{{i.profile.id}}">  <img class="commenteduserimage" src="/media/{{i.profile.profileimage}}" alt="Image">     </a>
+        </div>
+        <div style="margin-left:20px">
+            <a style="text-decoration:none; color:black;" href="/searchuserprofile/{{i.profile.id}}">    <p > {{i.user.username}}</p> </a>
+          <div class="comments">
+          {{i.comment}}
+          </div>
+        </div>
+         
+        </div>
+    </div>
+    </div>
+
+       {%  endfor %}
+ </div>
+    
+
+</main>
+
+</body>
+</html>

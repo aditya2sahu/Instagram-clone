@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Comments</title>
+    <style>
+        .logo {
+      width: 30px;
+      height: 30px;
+    }
+
+    nav {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      display: flex;
+      background-color: #0000003b;
+      align-items: center;
+      height: 59px;
+      justify-content: space-around;
+
+    }
+
+    .logo,
+    .home,
+    .inbox,
+    .Myprofile,
+    .login,
+    .singup {
+
+      text-decoration: none;
+      color: black;
+      font-size: 19px;
+    }
+    .container{
+           margin: auto;
+           width: 50%;
+
+    }
+    .allusercomments{
+        position: relative;
+        height: auto;
+    }
+    .commenteduserimage{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+
+    }
+    .commenteduser{
+        display: flex;
+        height: auto;
+    }
+    .comments{
+       
+}
+form{
+    
+    position: fixed;
+  bottom: 50%;
+  right: 162px;
+
+}
+.text{
+    width: 20vw;
+resize: none;
+height: 21vh;
+border-radius: 12px;
+}
+.btn {
+     background: #ffffff;
+  background-image: none;
+background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+-webkit-border-radius: 0;
+-moz-border-radius: 0;
+border-radius: 0px;
+font-family: 'Architects Daughter', cursive;
+color: #000000;
+font-size: 14px;
+border: solid #000000 1px;
+text-decoration: none;
+width: 50%;
+height: 36px;
+    }
+
+    .btn:hover {
+      background: #fccc63;
+      background-image: -webkit-linear-gradient(top, #fccc63, #ffffff);
+      background-image: -moz-linear-gradient(top, #fccc63, #ffffff);
+      background-image: -ms-linear-gradient(top, #fccc63, #ffffff);
+      background-image: -o-linear-gradient(top, #fccc63, #ffffff);
+      background-image: linear-gradient(to bottom, #fccc63, #ffffff);
+      text-decoration: none;
+    }
+    .set{
+        display:flex ;
+        justify-content: center;
+        margin-top: 5px;
+
+    }
+    
+
+    </style>
+</head>
+<body>
+
+    <nav class="navs">
+        <ul>
+            <img class="logo" src="{% static 'css/backlogin.png' %}">
+            <a class="home" href="/home"> <i class="material-icons">home</i>Home</a>
+            <a class="inbox" href="#"><i class="material-icons">markunread</i>Inbox</a>
+            <a class="inbox" href="/search"><i class="material-icons">search</i>Search</a>
+            <a class="Myprofile" href="/profile"><i class="material-icons">account_circle</i>{{request.user}}</a>
+            <a class="inbox" href="/post"><i class="material-icons">add</i>Post</a>
+        </ul>
+    </nav>
+
+ <main>   
+
+<div class="container">
+    <div style="display:flex; height:auto;" >
+        <div>
+            <img class="commenteduserimage" src="/media/{{getpost.profile_for_unlike_post.profileimage}}" alt="Image">
+        </div>
+        <div>
+             <p style="margin-left:20px;font-size: 20px;" ><b>{{getpost.profile.username}} </b></p>
+            <p style="margin-left:20px" > {{getpost.caption}}</p>
+            <p style="margin-left:20px;color: black;
+            font-size: 14px;"> {{getpost.date}}</p>
+        </div>
+        
+        
+    </div>
+<hr>
+
+   
+
+
+
+     {% for i in  list %}
+    <div style="height: auto; margin-bottom:10px;" >
+        <div class="allusercomments">
+      <div class="commenteduser">
+        <div>
+          <a href="/searchuserprofile/{{i.profile.id}}">  <img class="commenteduserimage" src="/media/{{i.profile.profileimage}}" alt="Image">     </a>
+        </div>
+        <div style="margin-left:20px">
+            <a style="text-decoration:none; color:black;" href="/searchuserprofile/{{i.profile.id}}">    <p > {{i.user.username}}</p> </a>
+          <div class="comments">
+          {{i.comment}}
+          </div>
+        </div>
+         
+        </div>
+    </div>
+    </div>
+
+       {%  endfor %}
+   
+
+     <form method="POST" action="/upload/{{getpost.id}}">{% csrf_token %}
+        <textarea class="text" name="comment" >
+
+        </textarea>
+        <div class="set" >
+            
+    <input class="btn" type="submit" value="Comment">  </div>
+      
+    </form>
+    
+</div>
+ 
+
+
+
+</main>
+
+
+
+
+ 
+       
+</body>
+</html>

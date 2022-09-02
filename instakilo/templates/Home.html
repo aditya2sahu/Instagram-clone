@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>intsta kilo </title>
+    <link rel="stylesheet" id="css-main" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+        .logo {
+            width: 30px;
+            height: 30px;
+        }
+
+        body {
+
+            background-image: url("{% static 'css/back.jpg' %}");
+            background-repeat: none;
+            background-size: cover;
+            background-attachment: fixed;
+
+        }
+
+        main {
+            background-color: #ffffff5c;
+        }
+
+        nav {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            display: flex;
+            background-color: #ffffff5c;
+            align-items: center;
+            height: 59px;
+            justify-content: space-around;
+
+        }
+
+        .logo,
+        .home,
+        .inbox,
+        .Myprofile,
+        .login,
+        .singup {
+
+            text-decoration: none;
+            color: white;
+            font-size: 19px;
+        }
+
+        .heading {
+
+            font-size: 20px;
+            width: 688px;
+            color: white;
+
+        }
+
+        .Aboutus {
+            margin-left: 20px;
+            width: 700px;
+        }
+
+        .Contact {
+            margin-left: 243px;
+        }
+
+        .small-itaclic {
+            font-size: 15px;
+            color: white;
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .link {
+
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+            font-family: 'Architects Daughter', cursive;
+
+        }
+
+        i {
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: auto;
+            height: 24vh;
+        }
+
+        .copyright {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            height: 55px;
+            background-color: #ffffff5c;
+        }
+
+        .companyname {
+
+            font-size: 21px;
+            ;
+            color: white;
+            font-family: 'Lobster', cursive;
+        }
+
+        main {
+            min-height: calc(100vh - 24vh - 59px);
+        }
+
+        .postshow {
+            width: 900px;
+            background-color: white;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border-radius: 1%;
+
+        }
+
+        .username {
+            position: absolute;
+            top: 11px;
+            display: flex;
+            left: 33px;
+        }
+
+        .postimage {
+            width: 49px;
+            border-radius: 50%;
+            height: 49px;
+        }
+
+        .usernamefont {
+            padding-left: 11px;
+            margin-top: 3px;
+            font-size: 20px;
+            position: relative;
+
+        }
+
+        .posttime {
+            color: #b0b0b0;
+            font-size: 14px;
+            position: absolute;
+            width: 164px;
+            top: 25px;
+            left: 82px;
+        }
+
+        }
+
+        .like {}
+
+        }
+
+        .comment {}
+    </style>
+</head>
+
+<body>
+    <nav class="navs">
+        <ul>
+            <img class="logo" src="{% static 'css/backlogin.png' %}">
+            <a class="home" href="/home"> <i class="material-icons">home</i>Home</a>
+            <a class="inbox" href="#"><i class="material-icons">markunread</i>Inbox</a>
+            <a class="inbox" href="/search"><i class="material-icons">search</i>Search</a>
+            <a class="Myprofile" href="/profile"><i class="material-icons">account_circle</i>{{request.user}}</a>
+            <a class="inbox" href="/post"><i class="material-icons">add</i>Post</a>
+        </ul>
+    </nav>
+
+    <hr style="color: white;">
+    <main style="margin-top:10px">
+        <center>
+
+            {% for i in steam %}
+            <div class="showposts" id={{i.id}}>
+                <div class="postshow">
+                    <div class="username">
+                        {% if i.profile_for_unlike_post.profileimage %}
+                           <a href="/searchuserprofile/{{i.profile_for_unlike_post.id}}"> <img class="postimage" src="/media/{{i.profile_for_unlike_post.profileimage}}"></a>
+                        {% else %}
+                        <img class="postimage" src="{% static 'css/default.png' %}">
+                        {% endif %}
+                        <p class="usernamefont" style="padding-left: 11px; margin-top: 3px;font-size:20px;">
+                           <a style="text-decoration:none; color:black;" href="/searchuserprofile/{{i.profile_for_unlike_post.id}}">  {{i.profile_for_unlike_post.user}}</p></a>
+                    </div>
+                    <div>
+                        <p class="posttime">{{i.date}}</p>
+                    </div>
+
+                    <div style=" position: absolute;
+bottom: 26px;
+left: 59px;
+display: flex;">
+                        <div style="position:relative;">
+                            <a class="like" href="/like/{{i.id}}">{% if request.user in i.like.all %} <i
+                                    class="fa fa-heart" style="  font-size: 34px;color:red;"></i> {% else %}<img
+                                    src="{% static 'css/like.png' %}">{% endif %}</a>
+                                    {% if i.like.count == 1 or i.like.count == 0 %}
+                                    <a style="text-decoration:none; color:black;" href="/likeview/{{i.id}}">
+                                     <p style="margin-top: 10px; font-family: 'Architects Daughter', cursive; "><b>like </b> {{i.like.count}}</p></a>
+
+                                    {% else %}
+                                    <a style="text-decoration:none; color:black;" href="/likeview/{{i.id}}">
+  <p style="margin-top: 10px; font-family: 'Architects Daughter', cursive; "><b>likes </b>{{i.like.count}}</p>
+</a>
+
+                                    {% endif %}
+
+                                  
+
+                        </div>
+                        <div style="margin-left: 10px;">
+                            <a href="/comment/{{i.id}}" class="comment"><img
+                                    src="{% static 'css/comment-un.png' %}"></a>
+                        </div>
+
+                      
+ 
+                    </div>
+                   
+                  
+
+                    <div>
+
+                        <img style="" src="/media/{{i.image}}">
+                      
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+            </div>
+
+            {% endfor %}
+
+        </center>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+    <footer>
+        <hr style="color: white;">
+        <div class="container">
+
+            <div class="Aboutus">
+                <div class="heading">
+                    <p>
+                        About Us
+                    </p>
+                </div>
+
+                <div class="small-itaclic">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui totam illo molestiae non hic!
+                        Similique, vero! Sit ullam, voluptatibus ratione error magni quia natus adipisci molestias
+                        deleniti sed quas accusamus?
+                    </p>
+                </div>
+            </div>
+            <div class="Contact">
+                <div class="heading">
+                    <p>
+                        Contact Us
+                    </p>
+                </div>
+                <div>
+                    <a class="link" href="">Facebook</a>
+                </div>
+                <div>
+                    <a class="link" href="">Tnstagram</a>
+                </div>
+                <div>
+                    <a class="link" href="">Tweeter</a>
+                </div>
+                <div>
+                    <a class="link" href="">SnapChat</a>
+                </div>
+            </div>
+
+            <div class="company">
+                <div class="heading">
+                    <p>
+                        Company
+                    </p>
+                </div>
+                <div class="image">
+                    <img style="width:70px;" src="{% static 'css/logo.png' %}">
+                    <p style="margin-top: 0px;" class="companyname"> Instakilo </p>
+                </div>
+                <div>
+
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <div class="copyright">
+        @2022 Copyright
+    </div>
+</body>
+
+</html>
